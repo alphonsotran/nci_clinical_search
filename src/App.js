@@ -1,18 +1,35 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      locations: [],
+      input: ''
+    }
+
+    this.updateInput = this.updateInput.bind(this)
+  }
+  componentDidMount() {
+    console.log('--componentDidMount--')
+  }
+  updateInput(e) {
+    const value = e.target.value
+    this.setState({
+      input: value
+    })
+  }
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div>
+        <input
+          type='text'
+          placeholder='Enter Location'
+          value={this.state.input}
+          onChange={this.updateInput}
+        />
+        <button>Search</button>
       </div>
     );
   }
