@@ -1,5 +1,20 @@
-import React, { Component } from 'react';
-import './App.css';
+import React, { Component } from 'react'
+import './App.css'
+
+window.API = {
+  fetchData (city) {
+    const modifiedEntry= city.replace(/ /g, '%20');
+    const encodedURI = encodeURI(`https://clinicaltrialsapi.cancer.gov/v1/clinical-trials?sites.org_city=${modifiedEntry}`)
+    return fetch(encodedURI)
+      .then((data) => data.json())
+      .then ((repos) => repos.items)
+      .catch((error) => {
+        console.log(error)
+        return null
+      })
+  }
+
+}
 
 class App extends Component {
   constructor(props) {
@@ -13,6 +28,7 @@ class App extends Component {
   }
   componentDidMount() {
     console.log('--componentDidMount--')
+    console.log(window.API.fetchData("San Francisco"))
   }
   updateInput(e) {
     const value = e.target.value
@@ -31,8 +47,8 @@ class App extends Component {
         />
         <button>Search</button>
       </div>
-    );
+    )
   }
 }
 
-export default App;
+export default App
