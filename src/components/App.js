@@ -56,14 +56,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <input
-          type='text'
-          placeholder='Enter Location'
-          value={this.state.input}
-          onChange={this.updateInput}
-        />
-        <button onClick={() => this.getClinicalSites(this.state.input)}>Search</button>
-        <Sites onSites={this.state.locations} />
+        <Sites getClinicalSites={this.getClinicalSites} value={this.state.input} onChange={this.updateInput} onSites={this.state.locations} />
       </div>
     )
   }
