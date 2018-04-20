@@ -1,7 +1,13 @@
 import React, { Component } from 'react'
 import Sites from './Sites'
+import Site from './Site'
 import './App.css'
 import axios from 'axios'
+import {
+  BrowserRouter,
+  Route,
+  Switch
+} from 'react-router-dom'
 
 // window.API = {
 //   fetchData (city) {
@@ -54,11 +60,17 @@ class App extends Component {
       input: value
     })
   }
+  // <Sites getClinicalSites={this.getClinicalSites} value={this.state.input} onChange={this.updateInput} onSites={this.state.locations} />
   render() {
     return (
-      <div>
-        <Sites getClinicalSites={this.getClinicalSites} value={this.state.input} onChange={this.updateInput} onSites={this.state.locations} />
-      </div>
+      <BrowserRouter>
+        <div>
+            <Route exact path='/' render={(routeProps) => (
+              <Sites {...routeProps} getClinicalSites={this.getClinicalSites} value={this.state.input} onChange={this.updateInput} onSites={this.state.locations} />
+            )} />
+            <Route path='/site' component={Site}/>
+        </div>
+      </BrowserRouter>
     )
   }
 }
