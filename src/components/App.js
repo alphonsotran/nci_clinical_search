@@ -23,7 +23,8 @@ class App extends Component {
     super(props)
     this.state = {
       locations: [],
-      input: ''
+      input: '',
+      status: 200
     }
 
     this.updateInput = this.updateInput.bind(this)
