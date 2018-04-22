@@ -1,7 +1,11 @@
 import React from 'react'
 import Site from './Site'
+import {
+	Route,
+	Link
+} from 'react-router-dom'
 
-export default function Sites (props) {
+const Sites = (props) => {
 	return (
 		<div>
 			<input
@@ -13,14 +17,19 @@ export default function Sites (props) {
 			<button onClick={() => props.getClinicalSites(props.value)}>Search</button>
 			{props.onSites.map((site)=> (
 				<ul key={site.nci_id}>
-					<li>{site.brief_title}</li>
+					<li><Link to={{
+							pathname: '/site',
+							state: {title: site.brief_title}
+							}}>{site.brief_title}</Link></li>
 					<li>Trial status: {site.current_trial_status}</li>
 					<li>Gender: {site.eligibility.structured.gender}</li>
 					<li>Minimum Age: {site.eligibility.structured.min_age}</li>
+					<Route path='/site' component={Site} />
 				</ul>
 			))}
-
 		</div>
 	)
 }
+
+export default Sites
 

@@ -1,7 +1,12 @@
 import React from 'react'
 
-const Site = () => {
-    return (<h3>Site</h3>)
+const Site = (props) => {
+  console.log(props)
+  return (
+    <div>  
+      <p>{props.location.state.title}</p>
+    </div>
+  )
 }
 
 export default Site
