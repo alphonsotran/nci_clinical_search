@@ -1,9 +1,10 @@
 import React from 'react'
 
-const Site = () => {
+const Site = (props) => {
+  console.log(props)
   return (
     <div>  
-      <p>Hello!</p>
+      <p>{props.location.state.title}</p>
     </div>
   )
 }

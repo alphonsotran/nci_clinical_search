@@ -17,13 +17,16 @@ const Sites = (props) => {
 			<button onClick={() => props.getClinicalSites(props.value)}>Search</button>
 			{props.onSites.map((site)=> (
 				<ul key={site.nci_id}>
-					<li><Link to='/site'>{site.brief_title}</Link></li>
+					<li><Link to={{
+							pathname: '/site',
+							state: {title: site.brief_title}
+							}}>{site.brief_title}</Link></li>
 					<li>Trial status: {site.current_trial_status}</li>
 					<li>Gender: {site.eligibility.structured.gender}</li>
 					<li>Minimum Age: {site.eligibility.structured.min_age}</li>
+					<Route path='/site' component={Site} />
 				</ul>
 			))}
-				<Route path='/site' component={Site}/>
 		</div>
 	)
 }

@@ -5,8 +5,7 @@ import './App.css'
 import axios from 'axios'
 import {
   BrowserRouter,
-  Route,
-  Switch
+  Route
 } from 'react-router-dom'
 
 // window.API = {
