@@ -5,6 +5,7 @@ const Site = (props) => {
   return (
     <div>  
       <p>{props.location.state.title}</p>
+      <p>{props.location.state.summary}</p>
     </div>
   )
 }
