@@ -6,6 +6,7 @@ import {
 } from 'react-router-dom'
 
 const Sites = (props) => {
+	console.log(process.env.REACT_APP_GOOGLE_API)
 	return (
 		<div>
 			<input
@@ -19,7 +20,10 @@ const Sites = (props) => {
 				<ul key={site.nci_id}>
 					<li><Link to={{
 							pathname: '/site',
-							state: {title: site.brief_title}
+							state: {
+								title: site.brief_title,
+								summary: site.brief_summary
+							}
 							}}>{site.brief_title}</Link></li>
 					<li>Trial status: {site.current_trial_status}</li>
 					<li>Gender: {site.eligibility.structured.gender}</li>
