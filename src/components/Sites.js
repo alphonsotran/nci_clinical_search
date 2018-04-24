@@ -25,7 +25,8 @@ const Sites = (props) => {
 							pathname: '/site',
 							state: {
 								title: site.brief_title,
-								clinic: site.sites
+								clinic: site.sites,
+								USstate: props.USstate
 								}
 							}}>{site.brief_title}</Link></li>
 					<li>Trial status: {site.current_trial_status}</li>
