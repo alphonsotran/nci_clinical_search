@@ -29,7 +29,8 @@ class App extends Component {
     this.state = {
       locations: [],
       input: '',
-      status: 200
+      status: 200,
+      state: ''
     }
 
     this.updateInput = this.updateInput.bind(this)
@@ -55,13 +56,23 @@ class App extends Component {
       })
   }
   getZipcode(site) {
+    let state = null
     return axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${site}&key=${process.env.REACT_APP_GEOCODE_API}`
       )
       .then((response) => {
-        console.log(response.data.results[0].address_components[3].short_name)
-        // this.setState({
-        //   state: response.data.results[0].address_components[3].short_name
-        // })
+        // console.log(response.data.results[0].address_components.map((el) => {
+        //   if (el.types[0] === "administrative_area_level_1" && el.types[1] === "political") {
+        //     return el.short_name
+        //   }
+        // }))
+        response.data.results[0].address_components.map((el) => {
+          if (el.types[0] === "administrative_area_level_1" && el.types[1] === "political") {
+            return state = el.short_name
+          }
+        })
+        this.setState({
+          state
+        })
       })
       .catch((error) => {
         console.log(error)
@@ -79,7 +90,7 @@ class App extends Component {
       <BrowserRouter>
         <div>
             <Route exact path='/' render={(routeProps) => (
-              <Sites {...routeProps} getClinicalSites={this.getClinicalSites} value={this.state.input} onChange={this.updateInput} onSites={this.state.locations} getZipcode={this.getZipcode} />
+              <Sites {...routeProps} getClinicalSites={this.getClinicalSites} value={this.state.input} onChange={this.updateInput} onSites={this.state.locations} getZipcode={this.getZipcode} USstate={this.state.state}/>
             )} />
             <Route path='/site' component={Site}/>
         </div>

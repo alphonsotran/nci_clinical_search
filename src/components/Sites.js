@@ -6,6 +6,7 @@ import {
 } from 'react-router-dom'
 
 const Sites = (props) => {
+	console.log(props.USstate)
 	return (
 		<div>
 			<input
