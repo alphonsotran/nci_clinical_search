@@ -14,7 +14,10 @@ const Sites = (props) => {
 				value={props.value}
 				onChange={props.onChange}
 			/>
-			<button onClick={() => props.getClinicalSites(props.value)}>Search</button>
+			<button onClick={() => {
+				props.getClinicalSites(props.value)
+				props.getZipcode(props.value)
+			}}>Search</button>
 			{props.onSites.map((site)=> (
 				<ul key={site.nci_id}>
 					<li><Link to={{
