@@ -6,7 +6,7 @@ import {
 } from 'react-router-dom'
 
 const Sites = (props) => {
-	console.log(props.USstate)
+	console.log('Sites', props.USstate)
 	return (
 		<div>
 			<input
@@ -23,7 +23,10 @@ const Sites = (props) => {
 				<ul key={site.nci_id}>
 					<li><Link to={{
 							pathname: '/site',
-							state: {title: site.brief_title}
+							state: {
+								title: site.brief_title,
+								clinic: site.sites
+								}
 							}}>{site.brief_title}</Link></li>
 					<li>Trial status: {site.current_trial_status}</li>
 					<li>Gender: {site.eligibility.structured.gender}</li>
