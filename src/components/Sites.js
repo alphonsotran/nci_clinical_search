@@ -6,7 +6,7 @@ import {
 } from 'react-router-dom'
 
 const Sites = (props) => {
-	console.log(process.env.REACT_APP_GOOGLE_API)
+	console.log('Sites', props.USstate)
 	return (
 		<div>
 			<input
@@ -15,15 +15,19 @@ const Sites = (props) => {
 				value={props.value}
 				onChange={props.onChange}
 			/>
-			<button onClick={() => props.getClinicalSites(props.value)}>Search</button>
+			<button onClick={() => {
+				props.getClinicalSites(props.value)
+				props.getZipcode(props.value)
+			}}>Search</button>
 			{props.onSites.map((site)=> (
 				<ul key={site.nci_id}>
 					<li><Link to={{
 							pathname: '/site',
 							state: {
 								title: site.brief_title,
-								summary: site.brief_summary
-							}
+								clinic: site.sites,
+								USstate: props.USstate
+								}
 							}}>{site.brief_title}</Link></li>
 					<li>Trial status: {site.current_trial_status}</li>
 					<li>Gender: {site.eligibility.structured.gender}</li>
