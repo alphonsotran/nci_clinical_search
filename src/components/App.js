@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Sites from './Sites'
 import Site from './Site'
+import Loading from './Loading'
 import './App.css'
 import axios from 'axios'
 import {
@@ -30,7 +31,8 @@ class App extends Component {
       locations: [],
       input: '',
       status: 200,
-      state: ''
+      state: '',
+      loading: false
     }
 
     this.updateInput = this.updateInput.bind(this)
@@ -44,11 +46,15 @@ class App extends Component {
   getClinicalSites(site) {
     // zipcode is better to use because it's more accurate and to reduce errors
     // const modifiedEntry = site.replace(/ /g, '%20')
+    this.setState({
+      loading: true
+    })
     return axios.get(`https://clinicaltrialsapi.cancer.gov/v1/clinical-trials?sites.org_postal_code=${site}`)
       .then((response) => {
         console.log(response.data.trials)
         this.setState({
-          locations: response.data.trials
+          locations: response.data.trials,
+          loading: false
         })
       })
       .catch((error) => {
@@ -89,10 +95,13 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div>
-            <Route exact path='/' render={(routeProps) => (
-              <Sites {...routeProps} getClinicalSites={this.getClinicalSites} value={this.state.input} onChange={this.updateInput} onSites={this.state.locations} getZipcode={this.getZipcode} USstate={this.state.state}/>
-            )} />
-            <Route path='/site' component={Site}/>
+            {this.state.loading === true
+            ? <Loading />
+            : <Route exact path='/' render={(routeProps) => (
+                <Sites {...routeProps} getClinicalSites={this.getClinicalSites} value={this.state.input} onChange={this.updateInput} onSites={this.state.locations} getZipcode={this.getZipcode} USstate={this.state.state}/>
+              )} />
+          }
+          <Route path='/site' component={Site}/>
         </div>
       </BrowserRouter>
     )
