@@ -1,4 +1,6 @@
 import React from 'react'
+import MapsContainer from './MapsContainer'
+import { GoogleApiWrapper } from 'google-maps-react';
 
 const Site = (props) => {
   console.log("Site", props.location.state.USstate)
@@ -9,6 +11,7 @@ const Site = (props) => {
     })
 
   console.log(filterStates)
+
   return (
     <div>  
       <p>{props.location.state.title}</p>
@@ -20,8 +23,11 @@ const Site = (props) => {
         <li>{el.contact_phone}</li>
       </ul>
       ))}
+      <MapsContainer google={props.google} />
     </div>
   )
 }
 
-export default Site
+export default GoogleApiWrapper({
+  apiKey: process.env.REACT_APP_GOOGLE_MAPS_JS_API,
+})(Site)
