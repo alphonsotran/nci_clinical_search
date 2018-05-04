@@ -23,7 +23,10 @@ const Site = (props) => {
         <li>{el.contact_phone}</li>
       </ul>
       ))}
-      <MapsContainer google={props.google} />
+      <MapsContainer 
+        google={props.google} 
+        filteredStates={filterStates}
+        />
     </div>
   )
 }
