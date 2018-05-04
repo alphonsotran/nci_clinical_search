@@ -9,10 +9,14 @@ export class MapsContainer extends Component {
     }
     return (
       <Map 
-        google={this.props.google} zoom={14} 
-        style={style}
-        
-        />
+        google={this.props.google} 
+        zoom={14} 
+        style={style}>
+        <Marker
+            title={'The marker`s title will appear as a tooltip.'}
+            name={'SOMA'}
+            position={{lat: 37.778519, lng: -122.405640}} />    
+        </Map>
     );
   }
 }
