@@ -6,14 +6,7 @@ export default class MapContainer extends Component {
     constructor(props){
         super(props)
         this.state = {
-          locations: [
-            { name: "New York County Supreme Court", location: {lat: 40.7143033, lng: -74.0036919} },
-            { name: "Queens County Supreme Court", location: {lat: 40.7046946, lng: -73.8091145} },
-            { name: "Kings County Supreme Court", location: {lat: 40.6940226, lng: -73.9890967} },
-            { name: "Richmond County Supreme Court", location: {lat: 40.6412336, lng: -74.0768597} },
-            { name: "Bronx Supreme Court", location: {lat: 40.8262388, lng: -73.9235238} }
-          ],
-          locationx: this.props.filteredLocations
+          locations: this.props.filteredLocations
         }
     }
     
@@ -31,8 +24,8 @@ export default class MapContainer extends Component {
       const node = ReactDOM.findDOMNode(mapRef); // finds the 'map' div in the React DOM, names it node
 
       const mapConfig = Object.assign({}, {
-        center: {lat: 40.7485722, lng: -74.0068633}, // sets center of google map to NYC.
-        zoom: 11, // sets zoom. Lower numbers are zoomed further out.
+        center: this.state.locations[0].location, // sets center of google map to NYC.
+        zoom: 7, // sets zoom. Lower numbers are zoomed further out.
         mapTypeId: 'roadmap' // optional main map layer. Terrain, satellite, hybrid or roadmap--if unspecified, defaults to roadmap.
       })
 
@@ -41,7 +34,7 @@ export default class MapContainer extends Component {
   // ==================
   // ADD MARKERS TO MAP
   // ==================
-      this.state.locationx.forEach( location => { // iterate through locations saved in state
+      this.state.locations.forEach( location => { // iterate through locations saved in state
         const marker = new google.maps.Marker({ // creates a new Google maps Marker object.
           position: {lat: location.location.lat, lng: location.location.lng}, // sets position of marker to specified location
           map: this.map, // sets markers to appear on the map we just created on line 35
@@ -59,7 +52,7 @@ export default class MapContainer extends Component {
   }
 
   render() {
-    console.log("MapContainer Filtered", this.state.location)
+    console.log("MapContainer Filtered", this.state.locations)
     const style = { // MUST specify dimensions of the Google map or it will not work. Also works best when style is specified inside the render function and created as an object
       width: '90vw', // 90vw basically means take up 90% of the width screen. px also works.
       height: '75vh' // 75vh similarly will take up roughly 75% of the height of the screen. px also works.
