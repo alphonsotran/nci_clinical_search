@@ -10,8 +10,12 @@ const Site = (props) => {
     props.location.state.clinic.filter((el) => {
       return el.org_state_or_province === props.location.state.USstate
     })
+  
+  const filteredLocations = filterStates.map((el, idx)=>(
+    [{name: el.contact_name, location: el.org_coordinates}]
+  ))
 
-  console.log(filterStates)
+  console.log("filterlocation", filteredLocations)
 
   return (
     <div>  
@@ -26,7 +30,7 @@ const Site = (props) => {
       ))}
       <MapContainer 
         google={props.google} 
-        filteredStates={filterStates}
+        filteredLocations={filteredLocations}
         />
     </div>
   )
