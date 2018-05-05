@@ -1,5 +1,6 @@
 import React from 'react'
 import MapsContainer from './MapsContainer'
+import MapContainer from './MapContainer'
 import { GoogleApiWrapper } from 'google-maps-react';
 
 const Site = (props) => {
@@ -23,7 +24,7 @@ const Site = (props) => {
         <li>{el.contact_phone}</li>
       </ul>
       ))}
-      <MapsContainer 
+      <MapContainer 
         google={props.google} 
         filteredStates={filterStates}
         />
