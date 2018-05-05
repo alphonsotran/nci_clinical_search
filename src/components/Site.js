@@ -12,7 +12,13 @@ const Site = (props) => {
     })
   
   const filteredLocations = filterStates.map((el, idx)=>(
-    [{name: el.contact_name, location: el.org_coordinates}]
+    { name: el.contact_name, 
+      location: {
+        lat: el.org_coordinates.lat,
+        lng: el.org_coordinates.lon
+      }
+    }
+
   ))
 
   console.log("filterlocation", filteredLocations)
