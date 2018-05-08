@@ -5,12 +5,13 @@ import { GoogleApiWrapper } from 'google-maps-react';
 
 const Site = (props) => {
   console.log("Site", props.location.state.USstate)
- 
+  
+  //uses JSON data to filter by state and truthy 
   const filterStates =
     props.location.state.clinic.filter((el) => {
-      return el.org_state_or_province === props.location.state.USstate
+      return el.org_state_or_province === props.location.state.USstate && el.org_coordinates
     })
-  
+
   const filteredLocations = filterStates.map((el, idx)=>(
     { name: el.contact_name, 
       location: {
@@ -18,10 +19,9 @@ const Site = (props) => {
         lng: el.org_coordinates.lon
       }
     }
-
   ))
 
-  console.log("filterlocation", filteredLocations)
+  console.log("filterlocation", filterStates)
 
   return (
     <div>  
