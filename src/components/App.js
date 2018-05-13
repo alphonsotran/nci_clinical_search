@@ -39,6 +39,7 @@ class App extends Component {
     this.getClinicalSites = this.getClinicalSites.bind(this)
     this.getZipcode = this.getZipcode.bind(this)
   }
+  
   componentDidMount() {
     console.log('--componentDidMount--')
     // console.log(window.API.fetchData("San Francisco"))
@@ -91,6 +92,7 @@ class App extends Component {
     })
   }
   // <Sites getClinicalSites={this.getClinicalSites} value={this.state.input} onChange={this.updateInput} onSites={this.state.locations} />
+  
   render() {
     return (
       <BrowserRouter>
