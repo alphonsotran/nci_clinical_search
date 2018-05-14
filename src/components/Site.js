@@ -1,5 +1,4 @@
 import React from 'react'
-import MapsContainer from './MapsContainer'
 import MapContainer from './MapContainer'
 import { GoogleApiWrapper } from 'google-maps-react';
 
