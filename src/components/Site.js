@@ -1,23 +1,29 @@
 import React from 'react'
-import MapsContainer from './MapsContainer'
 import MapContainer from './MapContainer'
 import { GoogleApiWrapper } from 'google-maps-react';
 
 const Site = (props) => {
   console.log("Site", props.location.state.USstate)
   
-  //uses JSON data to filter by state and truthy 
+  //uses JSON data to filter by state and truthy and cuts down cliincal site to 20
   const filterStates =
     props.location.state.clinic.filter((el) => {
       return el.org_state_or_province === props.location.state.USstate && el.org_coordinates
     })
+    .slice(0, 20)
 
-  const filteredLocations = filterStates.map((el, idx)=>(
+  //Adding in name and phone number to incorporate in the future.
+  const filteredLocations = filterStates.map((el) => (
     { name: el.contact_name, 
       location: {
         lat: el.org_coordinates.lat,
         lng: el.org_coordinates.lon
-      }
+      },
+      streetAddress: el.org_address_line_1,
+      city: el.org_city,
+      USstate: el.org_state_or_province,
+      organization: el.org_name,
+      phone: el.contact_phone
     }
   ))
 
@@ -25,13 +31,14 @@ const Site = (props) => {
 
   return (
     <div>  
-      <p>{props.location.state.title}</p>
+      <h2>{props.location.state.title}</h2>
+      <p>{props.location.state.summary}</p>
+      <h3>Participating Clinical Sites</h3>
       {filterStates.map((el, idx) => (
       <ul key={idx}>
-        <li>{el.contact_name}</li>
+        <li>{el.org_name}</li>
         <li>{el.org_address_line_1}</li>
         <li>{el.org_city}, {el.org_state_or_province}, {el.org_postal_code}</li>
-        <li>{el.contact_phone}</li>
       </ul>
       ))}
       <MapContainer 

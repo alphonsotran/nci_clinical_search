@@ -19,16 +19,19 @@ const Sites = (props) => {
 				props.getClinicalSites(props.value)
 				props.getZipcode(props.value)
 			}}>Search</button>
+			<h2>Clinical Cancer Trials</h2>
 			{props.onSites.map((site)=> (
 				<ul key={site.nci_id}>
 					<li><Link to={{
-							pathname: '/site',
-							state: {
-								title: site.brief_title,
-								clinic: site.sites,
-								USstate: props.USstate
+								pathname: '/site',
+								state: {
+									title: site.brief_title,
+									summary: site.brief_summary,
+									clinic: site.sites,
+									USstate: props.USstate
 								}
-							}}>{site.brief_title}</Link></li>
+							}}>{site.brief_title}</Link>
+					</li>
 					<li>Trial status: {site.current_trial_status}</li>
 					<li>Gender: {site.eligibility.structured.gender}</li>
 					<li>Minimum Age: {site.eligibility.structured.min_age}</li>
