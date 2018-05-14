@@ -42,7 +42,7 @@ export default class MapContainer extends Component {
           title: location.organization // the title of the marker is set to the name of the location
         });
         var infowindow = new google.maps.InfoWindow({
-          content: `<h3>${marker.title}</h3><h5>${location.name}</h5><p>${location.streetAddress}</p><p>${location.city},&nbsp;${location.USstate}</p><p>${location.phone}</p>`
+          content: `<h4>${marker.title}</h4><h5>${location.name}</h5><p>${location.streetAddress}</p><p>${location.city},&nbsp;${location.USstate}</p><p>${location.phone}</p>`
         });
         marker.addListener('click', function() {
           infowindow.open(this.map, marker);
