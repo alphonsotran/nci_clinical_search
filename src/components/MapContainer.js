@@ -39,10 +39,10 @@ export default class MapContainer extends Component {
         const marker = new google.maps.Marker({ // creates a new Google maps Marker object.
           position: {lat: location.location.lat, lng: location.location.lng}, // sets position of marker to specified location
           map: this.map, // sets markers to appear on the map we just created on line 35
-          title: location.name // the title of the marker is set to the name of the location
+          title: location.organization // the title of the marker is set to the name of the location
         });
         var infowindow = new google.maps.InfoWindow({
-          content: `<h3>${marker.title}</h3>`
+          content: `<h3>${marker.title}</h3><h5>${location.name}</h5><p>${location.streetAddress}</p><p>${location.city},&nbsp;${location.USstate}</p><p>${location.phone}</p>`
         });
         marker.addListener('click', function() {
           infowindow.open(this.map, marker);
