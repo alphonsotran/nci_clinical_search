@@ -12,7 +12,7 @@ const Site = (props) => {
     })
     .slice(0, 20)
 
-  //leaving in name and phone number to incorporate in the future
+  //Adding in name and phone number to incorporate in the future.
   const filteredLocations = filterStates.map((el) => (
     { name: el.contact_name, 
       location: {
