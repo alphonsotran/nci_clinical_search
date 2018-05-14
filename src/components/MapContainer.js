@@ -9,13 +9,14 @@ export default class MapContainer extends Component {
           locations: this.props.filteredLocations
         }
     }
+  
     
-
-  componentDidMount() {
-    this.loadMap(); 
-  }
-
-  loadMap() {
+    componentDidMount() {
+      this.loadMap(); 
+    }
+    
+    loadMap() {
+      const center = this.state.locations[0].location
     if (this.props && this.props.google) { // checks to make sure that props have been passed
       const {google} = this.props; // sets props equal to google
       const maps = google.maps; // sets maps to google maps props
@@ -24,7 +25,7 @@ export default class MapContainer extends Component {
       const node = ReactDOM.findDOMNode(mapRef); // finds the 'map' div in the React DOM, names it node
 
       const mapConfig = Object.assign({}, {
-        center: this.state.locations[0].location, // sets center of google map to NYC.
+        center: center, // sets center of google map to NYC.
         zoom: 7, // sets zoom. Lower numbers are zoomed further out.
         mapTypeId: 'roadmap' // optional main map layer. Terrain, satellite, hybrid or roadmap--if unspecified, defaults to roadmap.
       })
