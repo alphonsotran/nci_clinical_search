@@ -9,21 +9,6 @@ import {
   Route
 } from 'react-router-dom'
 
-// window.API = {
-//   fetchData (city) {
-//     const modifiedEntry= city.replace(/ /g, '%20');
-//     const encodedURI = encodeURI(`https://clinicaltrialsapi.cancer.gov/v1/clinical-trials?sites.org_city=${modifiedEntry}`)
-//     return fetch(encodedURI)
-//       .then((data) => data.json())
-//       .then ((repos) => repos.items)
-//       .catch((error) => {
-//         console.log(error)
-//         return null
-//       })
-//   }
-
-// }
-
 class App extends Component {
   constructor(props) {
     super(props)
@@ -67,11 +52,6 @@ class App extends Component {
     return axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${site}&key=${process.env.REACT_APP_GEOCODE_API}`
       )
       .then((response) => {
-        // console.log(response.data.results[0].address_components.map((el) => {
-        //   if (el.types[0] === "administrative_area_level_1" && el.types[1] === "political") {
-        //     return el.short_name
-        //   }
-        // }))
         response.data.results[0].address_components.map((el) => {
           if (el.types[0] === "administrative_area_level_1" && el.types[1] === "political") {
             return state = el.short_name
@@ -91,7 +71,6 @@ class App extends Component {
       input: value
     })
   }
-  // <Sites getClinicalSites={this.getClinicalSites} value={this.state.input} onChange={this.updateInput} onSites={this.state.locations} />
   
   render() {
     return (

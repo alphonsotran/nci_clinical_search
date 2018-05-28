@@ -1,6 +1,6 @@
 import React from 'react'
 import MapContainer from './MapContainer'
-import { GoogleApiWrapper } from 'google-maps-react';
+import { GoogleApiWrapper } from 'google-maps-react'
 
 const Site = (props) => {
   console.log("Site", props.location.state.USstate)
