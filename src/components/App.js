@@ -75,7 +75,7 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        <div>
+        <div className="container">
             {this.state.loading === true
             ? <Loading />
             : <Route exact path='/' render={(routeProps) => (
