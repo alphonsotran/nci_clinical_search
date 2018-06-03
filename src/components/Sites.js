@@ -9,9 +9,11 @@ const Sites = (props) => {
 	console.log('Sites', props.USstate)
 	return (
 		<div>
+			<h2>Clinical Cancer Trials</h2>
+			<p>Please enter your U.S. zipcode into the search bar below to find sites near you.</p>
 			<input
 				type='text'
-				placeholder='Enter Location'
+				placeholder='Enter Valid Zipcode'
 				value={props.value}
 				onChange={props.onChange}
 			/>
@@ -19,7 +21,6 @@ const Sites = (props) => {
 				props.getClinicalSites(props.value)
 				props.getZipcode(props.value)
 			}}>Search</button>
-			<h2>Clinical Cancer Trials</h2>
 			{props.onSites.map((site)=> (
 				<ul key={site.nci_id}>
 					<li><Link to={{
