@@ -1,19 +1,43 @@
 *{
 	box-sizing: border-box;
+	/* border: 1px red solid; */
 }
 
 body {
 	background-color: #f6f7f79c;
 }
 
-.container {
-	margin: 2% 12%;
-}
-
 ul {
 	list-style-type: none;
 	padding: 0;
 }
+
+
+.container {
+	margin: auto;
+}
+
+.search {
+	padding: 20px;
+	background-color: aqua;
+}
+
+.results {
+	padding: 20px;
+}
+
+.site {
+	padding: 20px;
+}
+
+.site>h2{
+	margin-top: 0;
+}
+
+.search>h2 {
+	margin-top: 0;
+}
+
 
 /* typography */
 

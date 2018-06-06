@@ -8,7 +8,8 @@ import {
 const Sites = (props) => {
 	console.log('Sites', props.USstate)
 	return (
-		<div>
+		<div className="sites">
+			<div className="search">
 			<h2>Clinical Cancer Trials</h2>
 			<p>Please enter your U.S. zipcode into the search bar below to find sites near you.</p>
 			<input
@@ -21,6 +22,8 @@ const Sites = (props) => {
 				props.getClinicalSites(props.value)
 				props.getZipcode(props.value)
 			}}>Search</button>
+			</div>
+			<div className="results">
 			{props.onSites.map((site)=> (
 				<ul key={site.nci_id}>
 					<li><Link to={{
@@ -39,6 +42,7 @@ const Sites = (props) => {
 					<Route path='/site' component={Site} />
 				</ul>
 			))}
+			</div>
 		</div>
 	)
 }

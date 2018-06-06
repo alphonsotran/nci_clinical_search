@@ -30,7 +30,7 @@ const Site = (props) => {
   console.log("filterlocation", filterStates)
 
   return (
-    <div>  
+    <div className="site">  
       <h2>{props.location.state.title}</h2>
       <p>{props.location.state.summary}</p>
       <h3>Participating Clinical Sites</h3>
